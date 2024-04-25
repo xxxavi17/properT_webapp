@@ -1,0 +1,24 @@
+var chatbox = document.getElementById('chatlogs');
+
+        function updateChat(msg, type) {
+            var newMessage = document.createElement('div');
+            newMessage.className = 'chat-message ' + type;
+            newMessage.innerText = msg;
+            chatbox.appendChild(newMessage);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        document.getElementById('submitmsg').addEventListener('click', function () {
+            var usermsg = document.getElementById('usermsg').value;
+            if (usermsg.trim() !== '') {
+                updateChat(usermsg, 'self');
+                document.getElementById('usermsg').value = '';
+            }
+        });
+
+        document.getElementById('usermsg').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                document.getElementById('submitmsg').click();
+            }
+        });
+

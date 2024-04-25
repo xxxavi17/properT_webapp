@@ -1,0 +1,256 @@
+/* Chat Styles */
+.contact-list-header,
+.chatbox-header {
+    text-align: left;
+    padding-left: 20px; /* Or any appropriate value for alignment */
+}
+
+.contact-list-title,
+.chatbox-title {
+    padding: 15px 20px; /* Add padding to align with the content */
+    margin: 0; /* Remove default margins */
+    background-color: #f9f9f9; /* Match the background color of the container */
+    border-bottom: 1px solid #ccc; /* Add a separator */
+    font-size: 1.5rem; /* Adjust font size as needed */
+    font-weight: bold; /* Make the font bold */
+    color: #333; /* Adjust the color as needed */
+}
+
+.contact-list-header h2,
+.chatbox-header h2 {
+    margin-top: 0; /* Remove any default margins if needed */
+    padding-top: 20px; /* Or any appropriate value for spacing */
+    font-size: 1.5em; /* Adjust the size as needed */
+    font-weight: bold; /* If you want the text to be bold */
+}
+
+.chat-interface {
+    display: flex;
+    justify-content: center; /* Center children horizontally */
+    gap: 20px; /* Space between chat and mailbox */
+    padding: 20px 0; /* Padding on top and bottom */
+    margin: 50px auto; /* Add space from top and center the chat interface horizontally */
+    max-width: 1200px; /* Maximum width of the chat interface */
+    align-items: stretch; /* Corrected typo here */
+}
+
+/* Styling for the mailbox to match chatbox */
+.contact-list {
+    background: #f9f9f9;
+    border: 10px solid #ccc;
+    border-radius: 20px; /* Rounder corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 30%; /* Width of the mailbox */
+	flex-grow: 1; /* Make both flex items grow equally */
+	margin-top: 0; /* Adjust the top margin as necessary */
+	padding: 0 20px; /* Add horizontal padding only */
+}
+
+.contact {
+    padding: 15px;
+    margin-bottom: 15px; /* Increase the margin for more separation */
+    border: 1px solid #ccc; /* Border for definition */
+    border-radius: 15px; /* Rounded corners for the contact boxes */
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Soft shadow for depth */
+}
+
+.contact-name {
+    font-weight: bold;
+	font-size: 1.2rem; /* make the name larger */
+}
+
+.contact-time {
+    font-size: 0.8em;
+    color: #666;
+}
+
+.contact:hover {
+    background-color: #ffe0e0; /* Slight highlight on hover */
+}
+
+#chatbox {
+    background: #f9f9f9;
+    border: 10px solid #ccc;
+    border-radius: 20px; /* Rounder corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 65%; /* Width adjusted */
+    position: relative; /* Needed for absolute positioning of chatinput */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+	height: 70vh;
+	flex-grow: 1; /* Make both flex items grow equally */
+	position: relative; /* This should be here if it's not */
+	margin-top: 0; /* Adjust the top margin as necessary */
+	padding-bottom: 60px; /* Adjust as needed to give space above the input area */
+}
+
+
+#chatlogs {
+    padding: 20px; /* Increased padding */
+    overflow-y: auto;
+    margin-top: 15px; /* Give some space below the title */
+    flex-grow: 1; /* Allow it to grow to fill the space */
+}
+
+
+/* Modified chat message styling for dynamic width */
+.chat-message {
+    padding: 10px;
+    border-radius: 15px; /* Slightly rounder corners */
+	max-width: 80%; /* Or whatever width you prefer */
+    margin: 5px auto; /* Center the messages */
+    border-radius: 15px; /* Rounded corners for message bubbles */
+    background-color: #e1e1e1;
+    display: flex; /* Use flex to handle message and name alignment */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Separate message and name */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    word-wrap: break-word; /* Ensure long words don't cause overflow */
+}
+
+.chat-message .text,
+.chat-message .name {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 75%; /* or your preferred max width */
+}
+
+/* This will prevent names from wrapping onto the next line */
+.chat-message .name {
+    white-space: nowrap;
+}
+
+/* Message tail adjustments */
+.chat-message::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+	margin-top: -15px;
+	display: none;
+}
+
+.chat-message.self::after {
+    content: "";
+    position: absolute;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid #dcf8c6;
+    right: -12px; /* Adjusted for increased padding */
+    top: 50%;
+    transform: translateY(-50%);
+    clear: both;
+    border-radius: 4px; /* New attribute for roundness */
+}
+
+.chat-message.other::after {
+    border-left: 15px solid #ececec;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+	left: -12px; /* Adjusted for increased padding */
+    border-radius: 4px; /* New attribute for roundness */
+}
+
+/* Name and text styling */
+.chat-message .name {
+    font-weight: bold;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.chat-message.self .name {
+    /* Align "You:" to the right after the message */
+    display: inline-block;
+    clear: both;
+    font-weight: bold;
+	order: 1; /* Makes 'You:' appear before the text message */
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.chat-message .text {
+    line-height: 24px;
+    display: inline-block;
+}
+
+/* Alignment for the other person */
+.chat-message.other {
+    float: left;
+    clear: both;
+}
+
+/* Alignment for your messages */
+.chat-message.self {
+    float: right;
+    clear: both;
+    justify-content: flex-end;
+    background-color: #ffdbdb;
+}
+
+/* Input area adjustments */
+#chatinput {
+    position: absolute;
+    bottom: 0; /* Adjust if input is not sticking to the bottom */
+    left: 20px;
+    right: 20px;
+    padding: 15px; /* Increase padding for larger input area */
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-top: 1px solid #ccc;
+}
+
+#usermsg {
+	width: calc(100% - (button width + padding)); /* Adjust width accordingly */
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 15px 20px; /* Increase padding for a larger input field */
+    font-size: 1rem; /* Increase font size if necessary */
+    border-radius: 25px; /* Rounded corners for input */
+    border: 1px solid #ccc;
+}
+
+#submitmsg {
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 50px; /* Highly rounded corners */
+    padding: 12px 20px; /* Increased padding */
+    margin-left: 5px; /* Space between buttons */
+    cursor: pointer;
+}
+
+#attachmsg {
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 50px; /* Highly rounded corners */
+    padding: 12px 20px; /* Increased padding */
+    margin-left: 5px; /* Space between buttons */
+    cursor: pointer;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#submitmsg {
+    padding: 10px 20px;
+    border-radius: 50px; /* Highly rounded corners */
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Icon adjustments for buttons */
+#attachmsg i,
+#submitmsg i {
+    margin-right: 5px;
+}
