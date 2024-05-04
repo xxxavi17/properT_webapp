@@ -1,10 +1,14 @@
 :root {
     --primary: #dc3545;
     --secondary: rgb(255, 113, 127);
-    --light: #EFFDF5;
+    --light: #fdefef;
     --dark: #0E2E50;
 }
 
+.container-index {
+    margin-top: 45px;
+
+}
 
 /*** Button ***/
 .btn {
@@ -45,9 +49,9 @@
 
 /*** Navbar ***/
 .nav-bar {
-    position: relative;
-    margin-top: 45px;
-    padding: 0 3rem;
+    position: sticky;
+    margin-top: 0px;
+    padding: 0rem;
     transition: .5s;
     z-index: 9999;
 }
@@ -59,7 +63,7 @@
 }
 
 .navbar {
-    box-shadow: 0 0 30px rgba(0, 0, 0, .08);
+    box-shadow: 0 0 70px rgba(41, 0, 0, 0.593);
 }
 
 .navbar .dropdown-toggle::after {
