@@ -8,3 +8,15 @@
     height: 400px; /* Fixed height for images */
     object-fit: cover; /* Cover the area without stretching */
 }
+
+.form-label {
+    font-weight: bold; /* Enhance label visibility */
+}
+
+.form-control {
+    border-radius: 0.25rem; /* Consistent border-radius */
+}
+
+
+
+
