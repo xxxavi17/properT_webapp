@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>properT - Add Property</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="img/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/add.css">
+</head>
+<body>
+    <!-- Navbar Start -->
+  <div class="container-fluid nav-bar bg-transparent">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light py-2 px-4">
+        <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
+            <div>
+                <img class="img-fluid" src="img/logoproper.png"  style="width: 140px; height: 80px;">
+            </div>
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto">
+                <a href="index.html" class="nav-item nav-link active">Home</a>
+                
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="" class="dropdown-item">Property List</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="clients.html" class="btn btn-primary px-3 d-none d-lg-flex">STAFF</a>
+        </div>
+    </nav>
+</div>
+<!-- Navbar End -->
+<div class="container mt-5">
+    <div class="row">
+        <!-- Image upload and preview section -->
+        <div class="col-md-6">
+            <div class="image-upload-container mb-3">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner" id="imageCarousel">
+                        <div class="carousel-item active">
+                            <img src="https://via.placeholder.com/600x400" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <input type="file" multiple id="propertyImages" class="form-control mt-3">
+            </div>
+        </div>
+
+        
+                <!-- Property details input section -->
+                <div class="col-lg-6">
+                    <form>
+                        <div class="mb-3">
+                            <label for="priceInput" class="form-label">Price</label>
+                            <input type="text" class="form-control" id="priceInput" placeholder="Enter price">
+                        </div>
+                        <div class="mb-3">
+                            <label for="bedroomsInput" class="form-label">Bedrooms</label>
+                            <input type="number" class="form-control" id="bedroomsInput" placeholder="Number of bedrooms">
+                        </div>
+                        <div class="mb-3">
+                            <label for="bathroomsInput" class="form-label">Bathrooms</label>
+                            <input type="number" class="form-control" id="bathroomsInput" placeholder="Number of bathrooms">
+                        </div>
+                        <div class="mb-3">
+                            <label for="squareFeetInput" class="form-label">Square Feet</label>
+                            <input type="number" class="form-control" id="squareFeetInput" placeholder="Total square feet">
+                        </div>
+                        <div class="mb-3">
+                            <label for="typeHouseInput" class="form-label">Type of House</label>
+                            <select class="form-select" id="typeHouseInput">
+                                <option value="apartment">Apartment</option>
+                                <option value="house">House</option>
+                                <option value="condo">Condo</option>
+                                <option value="townhouse">Townhouse</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="businessTypeInput" class="form-label">Type of Business</label>
+                            <select class="form-select" id="businessTypeInput">
+                                <option value="buy">Buy</option>
+                                <option value="rent">Rent</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Add Property</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+    <!-- JavaScript Libraries and Scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <script src="js/scripts.js"></script>
+
+    <script>
+        document.getElementById('propertyImages').addEventListener('change', function(event) {
+            var imageCarousel = document.getElementById('imageCarousel');
+            imageCarousel.innerHTML = ''; // Clear existing images
+        
+            Array.from(event.target.files).forEach((file, index) => {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var activeClass = index === 0 ? ' active' : '';
+                    var itemHTML = `<div class="carousel-item${activeClass}">
+                                        <img src="${e.target.result}" class="d-block w-100" alt="Uploaded Image">
+                                    </div>`;
+                    imageCarousel.innerHTML += itemHTML;
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+        </script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+
+        
+</body>
+</html>

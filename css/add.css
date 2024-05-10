@@ -1,0 +1,10 @@
+.image-upload-container {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.carousel-inner img {
+    height: 400px; /* Fixed height for images */
+    object-fit: cover; /* Cover the area without stretching */
+}
