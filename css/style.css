@@ -5,6 +5,18 @@
     --dark: #0E2E50;
 }
 
+.admin-mode {
+    background-color: rgba(255, 0, 0, 0.544); /* Red background */
+    color: white; /* White text */
+    padding: 10px 10px; /* Top and bottom padding of 5px, left and right padding of 10px */
+    border-radius: 15px; /* Rounded corners */
+    font-weight: bold; /* Bold text */
+    font-size: 1rem; /* Font size of 1rem */
+    display: inline-block; /* Ensures that padding and background color are applied correctly */
+    vertical-align: middle; /* Aligns the text vertically to the middle */
+}
+
+
 .container-index {
     margin-top: 45px;
 
@@ -91,7 +103,7 @@
 
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .nav-link.active {
-    color: var(--secondary);
+    color: var(--primary);
 }
 
 .nav-link2:hover{
