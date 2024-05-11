@@ -1,0 +1,22 @@
+.image-upload-container {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.carousel-inner img {
+    height: 400px; /* Fixed height for images */
+    object-fit: cover; /* Cover the area without stretching */
+}
+
+.form-label {
+    font-weight: bold; /* Enhance label visibility */
+}
+
+.form-control {
+    border-radius: 0.25rem; /* Consistent border-radius */
+}
+
+
+
+
