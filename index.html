@@ -84,38 +84,34 @@
         <!-- Header End -->
 
 
+        
         <!-- Search Start -->
         <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 20px;">
             <div class="container">
                 <div class="row g-2">
-                    <div class="col-md-10">
-                        <div class="row g-2">
-                            <div class="col-md-4">
-                                <input type="text" class="form-control border-0 py-3" placeholder="Search Keyword">
-                            </div>
-                            <div class="col-md-4">
-                                <select class="form-select border-0 py-3">
-                                    <option selected>Apartment</option>
-                                    <option value="1">House</option>
-                                    
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <select class="form-select border-0 py-3">
-                                    <option selected>To Buy</option>
-                                    <option value="1">To Rent</option>
-                                    
-                                </select>
-                            </div>
-                        </div>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control border-0 py-3" placeholder="Type e.g., Lisboa T2, Porto Apartment to Rent" id="search-input">
                     </div>
                     <div class="col-md-2">
-                        <a href="tobuy.html"><button class="btn btn-dark border-0 w-100 py-3">Search</button></a>
+                        <select class="form-select border-0 py-3" id="transaction-type">
+                            <option value="buy">To Buy</option>
+                            <option value="rent">To Rent</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select border-0 py-3" id="property-type">
+                            <option value="house">House</option>
+                            <option value="apartment">Apartment</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-dark border-0 w-100 py-3" onclick="searchProperties()">Search</button>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Search End -->
+        
+<!-- Search End -->
 
         
         <!-- Call to Action Start -->
@@ -319,6 +315,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/index.js"></script>
 </body>
 
 </html>
