@@ -70,7 +70,7 @@
 /* CSS in your main stylesheet */
 /* Global style for animating the fade in */
 .fade-in { 
-    animation: fadeIn 1s;
+    animation: fadeIn 2s;
   }
   
   @keyframes fadeIn {
@@ -80,7 +80,7 @@
   
   /* Ensure your body or main container has a class that can be targeted */
   .body-content {
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.7s ease-in-out;
     opacity: 0; /* Initially hidden */
   }
   
