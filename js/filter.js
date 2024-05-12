@@ -37,18 +37,3 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-function applyFilters() {
-    var minPrice = parseInt(document.getElementById('min-price').value);
-    var maxPrice = parseInt(document.getElementById('max-price').value);
-    var bedrooms = parseInt(document.getElementById('bedrooms').value);
-    var garage = document.getElementById('garage').value;
-    var heating = document.getElementById('heating').value;
-
-    // Aqui você simula uma verificação dos critérios
-    if (minPrice === 250000 && maxPrice === 350000 && bedrooms === '3+ bedrooms' && garage === 'With garage' && heating !== 'Central') {
-        window.location.href = 'porto-arrendar.html'; // Redireciona para a página desejada
-    } else {
-        // Mostrar mensagem ou alguma indicação de que nenhum imóvel cumpre os critérios
-        alert('No properties match your criteria.');
-    }
-}
