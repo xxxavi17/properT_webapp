@@ -194,7 +194,7 @@
                         
                         
                         
-                        <button type="submit" class="btn btn-dark mt-4 " style="margin-left: 250px;"><a style="color:aliceblue;" href="pagina-com-casa-nova.html">Add Property</a></button>
+                        <button type="submit" class="btn btn-dark mt-4 " style="margin-left: 250px;"><a style="color:aliceblue;" href="pagina-com-casa-nova.html" onclick="showAddPropertyPopup()">Add Property</a></button>
                         <p style="opacity: 0%;">.</p>
                         <p style="opacity: 0%;">.</p>
                     </form>
@@ -261,6 +261,10 @@
         </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
-   
+<script>
+    function showAddPropertyPopup() {
+        alert("Property added!");
+    }
+    </script> 
 </body>
 </html>
