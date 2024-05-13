@@ -9,8 +9,6 @@ function searchProperties() {
     // Construa a URL baseada no input e tipos de transação e propriedade
     if (normalizedInput.includes('lisboa') && transactionType === 'buy' && propertyType === 'apartment') {
         window.location.href = 'lisboa-comprar.html'; // Página específica para comprar casa em Lisboa
-    } else if (normalizedInput.includes('porto') && transactionType === 'rent' && propertyType === 'houset') {
-        window.location.href = 'porto-arrendar.html'; // Página específica para alugar apartamento no Porto
     } else {
         // Redireciona para uma página de não encontrado se nenhum termo específico ou condição de transação for correspondida
         window.location.href = 'notfound-page.html';
