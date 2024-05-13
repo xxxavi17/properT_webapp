@@ -119,10 +119,10 @@
         </div>
         <div class="col-md-7 my-auto">
             <div class="property-description" style="height: 100%;">
-                <h2>Appartment in Lisbon</h2>
+                <h2>Apartment in Lisbon</h2>
                 <p></p>
                 <div class="property-price">
-                    <h4 class="text-primary">250,000 €</h4>
+                    <h4 class="text-primary">280.000 €</h4>
                 </div>
                 <p></p>
                 <div class="property-features">
@@ -159,7 +159,7 @@
                 <label for="mensagem" class="form-label">Message:</label>
                 <textarea class="form-control" id="mensagem" name="mensagem" rows="4"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Send Message</button>
+            <button type="submit" class="btn btn-primary" onclick="showPopup()">Send Message</button>
             </form>
         </div>
     </div>
@@ -224,6 +224,12 @@
         </script>
         
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
-   
+
+<script>
+    function showPopup() {
+        alert("Your message has been sent!");
+        location.reload();
+    }
+    </script>
 </body>
 </html>
