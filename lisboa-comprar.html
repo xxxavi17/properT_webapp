@@ -90,16 +90,16 @@
             <div class="container">
                 <div class="row g-3">
                     <div class="col-md-3">
-                        <input type="number" id="min-price" class="form-control" placeholder="Min Price">
+                        <input type="number" id="min-price" class="form-control" placeholder="Min Price" min="0" max="1000">
                     </div>
                     <div class="col-md-3">
-                        <input type="number" id="max-price" class="form-control" placeholder="Max Price">
+                        <input type="number" id="max-price" class="form-control" placeholder="Max Price" min="0" max="1000">
                     </div>
                     <div class="col-md-3">
-                        <input type="number" id="min-m2" class="form-control" placeholder="Min m²">
+                        <input type="number" id="min-m2" class="form-control" placeholder="Min m²" min="0" max="1000">
                     </div>
                     <div class="col-md-3">
-                        <input type="number" id="max-m2" class="form-control" placeholder="Max m²">
+                        <input type="number" id="max-m2" class="form-control" placeholder="Max m²" min="0" max="1000">
                     </div>
                     <div class="col-md-3">
                         <select id="bedrooms" class="form-select">
@@ -112,7 +112,7 @@
                     </div>
                     <div class="col-md-3">
                         <select id="bedrooms" class="form-select">
-                            <option value="">Bathrooms</option>
+                            <option value="">Any Bathrooms</option>
                             <option value="1">1 Bathrooms</option>
                             <option value="2">2 Bathrooms</option>
                             <option value="3">3+ Bathrooms</option>
@@ -120,14 +120,14 @@
                     </div>
                     <div class="col-md-3">
                         <select id="pool" class="form-select">
-                            <option value="">Garage</option>
+                            <option value="" disabled selected>Garage</option>
                             <option value="yes">With Garage</option>
                             <option value="no">Without Garage</option>
                         </select>
                     </div>
                     <div class="col-md-3">
                         <select id="heating" class="form-select">
-                            <option value="">Heating</option>
+                            <option value="" disabled selected>Heating</option>
                             <option value="central">Central</option>
                             <option value="none">None</option>
                         </select>
