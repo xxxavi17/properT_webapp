@@ -16,6 +16,27 @@
     color: #333; /* Adjust the color as needed */
 }
 
+.contact-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0; /* Space around the controls */
+}
+
+.contact-controls .btn {
+    flex: 1; /* Make buttons flexible */
+    margin-right: 10px; /* Space between buttons */
+}
+
+.contact-controls .btn:last-child {
+    margin-right: 0; /* Remove margin for the last button */
+}
+
+.contact-controls .form-control {
+    flex: 2; /* Make the search input larger */
+    margin-left: 10px; /* Space between the buttons and the search input */
+}
+
 .contact-list-header h2,
 .chatbox-header h2 {
     margin-top: 0; /* Remove any default margins if needed */
@@ -41,9 +62,9 @@
     border-radius: 20px; /* Rounder corners */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 30%; /* Width of the mailbox */
-	flex-grow: 1; /* Make both flex items grow equally */
-	margin-top: 0; /* Adjust the top margin as necessary */
-	padding: 0 20px; /* Add horizontal padding only */
+    flex-grow: 1; /* Make both flex items grow equally */
+    margin-top: 0; /* Adjust the top margin as necessary */
+    padding: 0 20px; /* Add horizontal padding only */
 }
 
 .contact {
@@ -55,9 +76,19 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Soft shadow for depth */
 }
 
+.contact_active {
+    padding: 15px;
+    margin-bottom: 15px; /* Increase the margin for more separation */
+    border: 1px solid #676767; /* Border for definition */
+    border-width: 0.05cm;
+    border-radius: 15px; /* Rounded corners for the contact boxes */
+    background: rgb(224, 224, 224);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Soft shadow for depth */
+}
+
 .contact-name {
     font-weight: bold;
-	font-size: 1.2rem; /* make the name larger */
+    font-size: 1.2rem; /* make the name larger */
 }
 
 .contact-time {
@@ -78,13 +109,12 @@
     position: relative; /* Needed for absolute positioning of chatinput */
     display: flex;
     flex-direction: column; /* Stack children vertically */
-	height: 70vh;
-	flex-grow: 1; /* Make both flex items grow equally */
-	position: relative; /* This should be here if it's not */
-	margin-top: 0; /* Adjust the top margin as necessary */
-	padding-bottom: 60px; /* Adjust as needed to give space above the input area */
+    height: 70vh;
+    flex-grow: 1; /* Make both flex items grow equally */
+    position: relative; /* This should be here if it's not */
+    margin-top: 0; /* Adjust the top margin as necessary */
+    padding-bottom: 60px; /* Adjust as needed to give space above the input area */
 }
-
 
 #chatlogs {
     padding: 20px; /* Increased padding */
@@ -93,12 +123,11 @@
     flex-grow: 1; /* Allow it to grow to fill the space */
 }
 
-
 /* Modified chat message styling for dynamic width */
 .chat-message {
     padding: 10px;
     border-radius: 15px; /* Slightly rounder corners */
-	max-width: 80%; /* Or whatever width you prefer */
+    max-width: 80%; /* Or whatever width you prefer */
     margin: 5px auto; /* Center the messages */
     border-radius: 15px; /* Rounded corners for message bubbles */
     background-color: #e1e1e1;
@@ -129,8 +158,8 @@
     height: 0;
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
-	margin-top: -15px;
-	display: none;
+    margin-top: -15px;
+    display: none;
 }
 
 .chat-message.self::after {
@@ -151,7 +180,7 @@
     left: 100%;
     top: 50%;
     transform: translateY(-50%);
-	left: -12px; /* Adjusted for increased padding */
+    left: -12px; /* Adjusted for increased padding */
     border-radius: 4px; /* New attribute for roundness */
 }
 
@@ -167,7 +196,7 @@
     display: inline-block;
     clear: both;
     font-weight: bold;
-	order: 1; /* Makes 'You:' appear before the text message */
+    order: 1; /* Makes 'You:' appear before the text message */
     margin-left: 0;
     margin-right: 10px;
 }
@@ -189,6 +218,7 @@
     clear: both;
     justify-content: flex-end;
     background-color: #ffdbdb;
+    width: 5cm;
 }
 
 /* Input area adjustments */
@@ -205,7 +235,7 @@
 }
 
 #usermsg {
-	width: calc(100% - (button width + padding)); /* Adjust width accordingly */
+    width: calc(100% - (button width + padding)); /* Adjust width accordingly */
     flex-grow: 1;
     margin-right: 10px;
     padding: 15px 20px; /* Increase padding for a larger input field */

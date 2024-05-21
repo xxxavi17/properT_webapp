@@ -40,20 +40,20 @@
                 <img class="img-fluid" src="img/logoproper.png" style="width: 140px; height: 80px;">
             </div>      
         </a>
-        <span class="admin-mode ms-2">Admin Mode</span>
+        <span class="admin-mode ms-2" style="color: #ffffff; font-weight: bold;">Admin Mode</span>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto">
-                <a href="index_admin.html" class="nav-item nav-link">Home</a>
-                <a href="add_property.html" class="nav-item nav-link">Add a Property</a>
-                <a href="clients.html" class="nav-item nav-link active">Clients</a>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a href="index_admin.html" class="nav-item nav-link" style="font-weight: bold; font-size: larger;">Home</a>
+                <a href="add_property.html" class="nav-item nav-link" style="font-weight: bold;font-size: larger;">Add a Property</a>
+                <a href="clients.html" class="nav-item nav-link active" style="font-weight: bold;font-size: larger;">Clients</a>
             </div>
             <!-- Logout Confirmation Modal with close button -->
-            <div id="logoutModal" class="logout-modal" style="display: none;" onclick="closeModal(event)">
+            <div id="logoutModal" class="logout-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
                 <div class="logout-content">
-                    <span class="close-btn" onclick="closeModal()">&times;</span>
+                    <span class="close-btn" onclick="closeModal()" style="cursor: pointer; position: absolute; top: 10px; right: 10px;">&times;</span>
                     <p>Are you sure you want to logout?</p>
                     <button onclick="logoutUser()" class="btn btn-danger rounded-pill">Yes, logout</button>
                     <button onclick="closeModal()" class="btn rounded-pill no-btn">No, cancel</button>
@@ -61,9 +61,7 @@
             </div>
 
             <!-- Original logout button with an event handler for opening the modal -->
-
-            <a href="#" class="btn btn-primary px-3 d-none d-lg-flex" id="logoutButton">LOGOUT</a>
-
+            <a href="#" class="btn btn-primary px-3 d-none d-lg-flex" id="logoutButton" style="position: absolute; right: 20px;">LOGOUT</a>
         </div>
     </nav>
 </div>
@@ -76,34 +74,44 @@
     <div class="chat-interface">
         <div class="contact-list">
             <h2 class="contact-list-title">Clients</h2>
-            <a href=""><div class="contact">
+            
+            <!-- New buttons and search bar -->
+            <div class="contact-controls">
+                <a href="clients_unread.html"><button class="btn btn-primary" id="unreadButton">Unread</button></a>
+                <a href=""><button class="btn btn-primary active" id="allButton">All</button></a>
+                <input type="text" id="searchInput" placeholder="Search by name..." class="form-control">
+            </div>
+            
+            <a href="clients_teresa.html"><div class="contact">
                 <div class="contact-name">Maria Teresa <span class="red-dot"></span></div> 
                 <div class="contact-time">20 minutes ago</div>
             </div></a>
-            <a href=""><div class="contact">
-                <div class="contact-name" style = "color: rgb(123, 123, 123)">Pedro Alves ✓</div>
+            <a href=""><div class="contact_active">
+                <div class="contact-name" style="color: rgb(123, 123, 123)">Pedro Alves ✓</div>
                 <div class="contact-time">5 days ago</div>
             </div></a>
             <a href=""><div class="contact">
-                <div class="contact-name" style = "color: rgb(123, 123, 123)">Tomás Correia ✓</div>
+                <div class="contact-name" style="color: rgb(123, 123, 123)">Tomás Correia ✓</div>
                 <div class="contact-time">1 month ago</div>
             </div></a>
             <!-- More contacts -->
         </div>
-        
         <div id="chatbox">
-            <h2 class="chatbox-title">Maria Teresa</h2>
+            <h2 class="chatbox-title">Pedro Alves</h2>
         
             <div id="chatlogs">
                 <!-- Pre-populated static chat messages -->
                 <div class="chat-message other">
-                    <div class="name">Maria Teresa:</div>
+                    <div class="name">Pedro Alves:</div>
                     <div class="text">Interested in:</div>
                     <div class="text"><a href="property.html"> Apartamento T2, R. Barracas, Lisboa</a></div>
                 </div>
                 <div class="chat-message other">
-                    <div class="name">Maria Teresa:</div>
-                    <div class="text">Hello, I am interested in this apartment, is it possible to visit it ?</div>
+                    <div class="name">Pedro Alves:</div>
+                    <div class="text">Hello, can I visit this property ?</div>
+                </div>
+                <div class="chat-message self">
+                    <div class="text">Yes, of course, what about friday by 19:00 ?</div>
                 </div>
                 
                 <!-- More static messages can be added here -->
@@ -115,6 +123,7 @@
                 <button id="submitmsg">Send</button>
             </div>
         </div>
+        
     </div>
 </div>
 </div>
@@ -146,7 +155,6 @@
         </div>
         <!-- Footer End -->
 
-
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- Javascript -->
     <script src="js/main.js"></script>
@@ -154,3 +162,4 @@
 </body>
 
 </html>
+
