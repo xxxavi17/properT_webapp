@@ -30,32 +30,49 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/logout.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
 </head>
 
 <body>
 
 
-  <!-- Navbar Start -->
-  <div class="container-fluid nav-bar bg-transparent">
-    <nav class="navbar navbar-expand-lg bg-white navbar-light py-2 px-4">
-        <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
-            <div>
-                <img class="img-fluid" src="img/logoproper.png"  style="width: 140px; height: 80px;">
+    <!-- Navbar Start -->
+    <div class="container-fluid nav-bar bg-transparent">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-2 px-4">
+            <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
+                <div>
+                    <img class="img-fluid" src="img/logoproper.png"  style="width: 140px; height: 80px;">
+                </div>
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto">
+                    <a href="index.html" class="nav-item nav-link active">Home</a>
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                </div>
+                <a href="#" class="btn btn-primary px-3 d-none d-lg-flex" id="staffButton">STAFF</a>
             </div>
-        </a>
-        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto">
-                <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
-            </div>
-            <a href="index_admin.html" class="btn btn-primary px-3 d-none d-lg-flex">STAFF</a>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Login Modal -->
+    <div id="logoutModal" class="logout-modal" style="display: none;">
+        <div class="logout-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3>Staff Login</h3>
+            <form id="loginForm">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p id="errorMessage" class="error-message"></p>
         </div>
-    </nav>
-</div>
-<!-- Navbar End -->
+    </div>
 
 <div class="body-content">
         <!-- Search Start -->
@@ -146,6 +163,8 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/login.js"></script>
 </body>
 
 </html>
