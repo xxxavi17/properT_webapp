@@ -27,15 +27,14 @@
     <link href="css/add.css" rel="stylesheet">
     <link href="css/logout.css" rel="stylesheet">
     <style>
-        /* Add this CSS to set a fixed height for the image preview containers */
         .image-upload-container .col-md-4 {
-            height: 200px; /* Adjust the height as needed */
+            height: 200px; 
         }
     
         .image-upload-container .col-md-4 img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: cover; /* Ensure that the image covers the entire container */
+            object-fit: cover;
         }
     </style>
 </head>
@@ -87,6 +86,7 @@
                 <div class="image-upload-container mb-3">
                     <div id="previewContainer" class="row"></div>
                     <input type="file" multiple id="propertyImages" class="form-control mt-3">
+                    <span id="propertyImagesError" class="text-danger"></span>
                 </div>
             </div>
 
@@ -97,6 +97,7 @@
                     <div class="mb-3">
                         <label for="businessTypeInput" class="form-label">Type of Business</label>
                         <select class="form-select" id="businessTypeInput">
+                            <option value="">Select</option>
                             <option value="buy">Buy</option>
                             <option value="rent">Rent</option>
                         </select>
@@ -108,7 +109,7 @@
                         <div class="input-wrapper">
                             <input type="number" class="form-control" id="priceInput" placeholder="Enter price" min="0" oninput="validateInput(this)">
                         </div>
-                        
+                        <span id="priceError" class="text-danger"></span>
                     </div>
 
                     <!-- Bedrooms and Bathrooms in a row -->
@@ -116,24 +117,29 @@
                         <div class="col-md-6 mb-3">
                             <label for="bedroomsInput" class="form-label">Bedrooms</label>
                             <input type="number" class="form-control" id="bedroomsInput" placeholder="Number of bedrooms">
+                            <span id="bedroomsError" class="text-danger"></span>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="bathroomsInput" class="form-label">Bathrooms</label>
                             <input type="number" class="form-control" id="bathroomsInput" placeholder="Number of bathrooms">
+                            <span id="bathroomsError" class="text-danger"></span>
                         </div>
                     </div>
                     <!-- Size -->
                     <div class="mb-3">
                         <label for="squareFeetInput" class="form-label">Square Meters (m²)</label>
                         <input type="number" class="form-control" id="squareFeetInput" placeholder="Total square feet" min="0" oninput="validateInput(this)">
+                        <span id="squareFeetError" class="text-danger"></span>
                     </div>
                     <!-- Type of property -->
                     <div class="mb-3">
-                        <label for="typeHouseInput" for="typeHouseError" class="form-label">Type of House</label>
+                        <label for="typeHouseInput" class="form-label">Type of Property</label>
                         <select class="form-select" id="typeHouseInput">
+                            <option value="">Select</option>
                             <option value="apartment">Apartment</option>
                             <option value="house">House</option>
                         </select>
+                        <span id="typePropertyError" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3">
@@ -172,11 +178,13 @@
                             <option value="Barreiro">Barreiro</option>
                             <option value="Guimarães">Guimarães</option>
                         </datalist>
+                        <span id="cityError" class="text-danger"></span>
                     </div>
                 
                     <div class="mb-3">
                         <label for="exactLocationInput" class="form-label">Exact Location (Street, number, ...)</label>
                         <input type="text" class="form-control" id="exactLocationInput" placeholder="Enter street and number">
+                        <span id="exactLocationError" class="text-danger"></span>
                     </div>
                     
                     <button type="button" class="btn btn-dark mt-4" style="margin-left: 250px;" onclick="showAddPropertyPopup()">Add Property</button>
@@ -265,8 +273,97 @@
     });
 </script>
 <script>
+    function validateForm() {
+        let isValid = true;
+
+        const businessTypeInput = document.getElementById('businessTypeInput');
+        const priceInput = document.getElementById('priceInput');
+        const bedroomsInput = document.getElementById('bedroomsInput');
+        const bathroomsInput = document.getElementById('bathroomsInput');
+        const squareFeetInput = document.getElementById('squareFeetInput');
+        const typeHouseInput = document.getElementById('typeHouseInput');
+        const cityInput = document.getElementById('cityInput');
+        const exactLocationInput = document.getElementById('exactLocationInput');
+        const propertyImagesInput = document.getElementById('propertyImages');
+
+        clearErrorMessages();
+
+        // Validate Business Type
+        if (businessTypeInput.value === "") {
+            showError('businessTypeInput', 'Please select the type of business.');
+            isValid = false;
+        }
+
+        // Validate Price
+        if (priceInput.value === "" || priceInput.value <= 0) {
+            showError('priceInput', 'Please enter a valid price.');
+            isValid = false;
+        }
+
+        // Validate Bedrooms
+        if (bedroomsInput.value === "" || bedroomsInput.value <= 0) {
+            showError('bedroomsInput', 'Please enter the number of bedrooms.');
+            isValid = false;
+        }
+
+        // Validate Bathrooms
+        if (bathroomsInput.value === "" || bathroomsInput.value <= 0) {
+            showError('bathroomsInput', 'Please enter the number of bathrooms.');
+            isValid = false;
+        }
+
+        // Validate Square Meters
+        if (squareFeetInput.value === "" || squareFeetInput.value <= 0) {
+            showError('squareFeetInput', 'Please enter the total square meters.');
+            isValid = false;
+        }
+
+        // Validate Type of House
+        if (typeHouseInput.value === "") {
+            showError('typeHouseInput', 'Please select the type of Property.');
+            isValid = false;
+        }
+
+        // Validate City
+        if (cityInput.value === "") {
+            showError('cityInput', 'Please select a city.');
+            isValid = false;
+        }
+
+        // Validate Exact Location
+        if (exactLocationInput.value === "") {
+            showError('exactLocationInput', 'Please enter the exact location.');
+            isValid = false;
+        }
+
+         // Validate Image Upload
+        if (propertyImagesInput.files.length === 0) {
+            showError('propertyImages', 'Please upload at least one image.');
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    function showError(elementId, message) {
+        const element = document.getElementById(elementId);
+        const errorElement = document.createElement('span');
+        errorElement.className = 'text-danger';
+        errorElement.innerText = message;
+        element.parentElement.appendChild(errorElement);
+    }
+
+    function clearErrorMessages() {
+        const errorMessages = document.querySelectorAll('.text-danger');
+        errorMessages.forEach(function(error) {
+            error.remove();
+        });
+    }
+
     function showAddPropertyPopup() {
-        $('#customAlert').modal('show');
+        if (validateForm()) {
+            $('#customAlert').modal('show');
+        }
     }
 </script>
 <script>
