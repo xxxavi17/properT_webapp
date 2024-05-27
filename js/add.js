@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var squareFeetInput = document.getElementById('squareFeetInput');
     var bedroomsInput = document.getElementById('bedroomsInput');
     var bathroomsInput = document.getElementById('bathroomsInput');
+    
 
     function validateNumericInput(event) {
         // Allow backspace, delete, tab, escape, and enter

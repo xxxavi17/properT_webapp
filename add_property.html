@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>properT</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
+<head>
+    <meta charset="utf-8">
+    <title>properT</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
     
-        <!-- Favicon -->
-        <link href="img/favicon.ico" rel="icon">
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/add.css" rel="stylesheet">
+    <link href="css/logout.css" rel="stylesheet">
+    <style>
+        /* Add this CSS to set a fixed height for the image preview containers */
+        .image-upload-container .col-md-4 {
+            height: 200px; /* Adjust the height as needed */
+        }
     
-        <!-- Google Web Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
-        
-        <!-- Icon Font Stylesheet -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    
-        <!-- Customized Bootstrap Stylesheet -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-    
-        <!-- Template Stylesheet -->
-        <link href="css/style.css" rel="stylesheet">
-        <link href="css/add.css" rel="stylesheet">
-        <link href="css/logout.css" rel="stylesheet">
-    </head>
+        .image-upload-container .col-md-4 img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover; /* Ensure that the image covers the entire container */
+        }
+    </style>
+</head>
 <body>
 <!-- Navbar Start -->
 <div class="container-fluid nav-bar bg-transparent">
@@ -65,200 +77,204 @@
 
 <div class="body-content">                 
 
-<div class="container mt-5">
-    <h1 class="display-5 animated fadeIn mb-4">Adding a <span class="text-secondary">Proper</span><span class="text-primary">T</span> ...</h1>
-    <p style="opacity: 0%;">.</p>
+    <div class="container mt-5">
+        <h1 class="display-5 animated fadeIn mb-4">Adding a <span class="text-secondary">Proper</span><span class="text-primary">T</span> ...</h1>
+        <p style="opacity: 0%;">.</p>
 
-    <div class="row">
-        <!-- Image upload and preview section -->
-        <div class="col-md-6">
-            <div class="image-upload-container mb-3">
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner" id="imageCarousel">
-                        <div class="carousel-item active">
-                            <img src="https://via.placeholder.com/600x400" class="d-block w-100" alt="...">
+        <div class="row">
+            <!-- Image upload and preview section -->
+            <div class="col-md-6">
+                <div class="image-upload-container mb-3">
+                    <div id="previewContainer" class="row"></div>
+                    <input type="file" multiple id="propertyImages" class="form-control mt-3">
+                </div>
+            </div>
+
+            <!-- Property details input section -->
+            <div class="col-lg-6">
+                <form>
+                    <!-- Business -->
+                    <div class="mb-3">
+                        <label for="businessTypeInput" class="form-label">Type of Business</label>
+                        <select class="form-select" id="businessTypeInput">
+                            <option value="buy">Buy</option>
+                            <option value="rent">Rent</option>
+                        </select>
+                        <span id="businessTypeError" class="text-danger"></span>
+                    </div>
+                    <!-- Price -->
+                    <div class="form-group mb-3">
+                        <label for="priceInput" class="form-label">Price (€)</label>
+                        <div class="input-wrapper">
+                            <input type="number" class="form-control" id="priceInput" placeholder="Enter price" min="0" oninput="validateInput(this)">
+                        </div>
+                        
+                    </div>
+
+                    <!-- Bedrooms and Bathrooms in a row -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="bedroomsInput" class="form-label">Bedrooms</label>
+                            <input type="number" class="form-control" id="bedroomsInput" placeholder="Number of bedrooms">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="bathroomsInput" class="form-label">Bathrooms</label>
+                            <input type="number" class="form-control" id="bathroomsInput" placeholder="Number of bathrooms">
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-                <input type="file" multiple id="propertyImages" class="form-control mt-3">
-            </div>
-        </div>
+                    <!-- Size -->
+                    <div class="mb-3">
+                        <label for="squareFeetInput" class="form-label">Square Meters (m²)</label>
+                        <input type="number" class="form-control" id="squareFeetInput" placeholder="Total square feet" min="0" oninput="validateInput(this)">
+                    </div>
+                    <!-- Type of property -->
+                    <div class="mb-3">
+                        <label for="typeHouseInput" for="typeHouseError" class="form-label">Type of House</label>
+                        <select class="form-select" id="typeHouseInput">
+                            <option value="apartment">Apartment</option>
+                            <option value="house">House</option>
+                        </select>
+                    </div>
 
-        
-                <!-- Property details input section -->
-
-
-
-                <div class="col-lg-6">
-                    <form>
-                        <!-- Business -->
-                        <div class="mb-3">
-                            <label for="businessTypeInput" class="form-label">Type of Business</label>
-                            <select class="form-select" id="businessTypeInput">
-                                <option value="buy">Buy</option>
-                                <option value="rent">Rent</option>
-                            </select>
-                        </div>
-                        <!-- Price -->
-                        <div class="form-group mb-3">
-                            <label for="priceInput" class="form-label">Price (€)</label>
-                            <div class="input-wrapper">
-                                <input type="number" class="form-control" id="priceInput" placeholder="Enter price" min="0" oninput="validateInput(this)">
-                            </div>
-                        </div>
-
-                        <!-- Bedrooms and Bathrooms in a row -->
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="bedroomsInput" class="form-label">Bedrooms</label>
-                                <input type="number" class="form-control" id="bedroomsInput" placeholder="Number of bedrooms">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="bathroomsInput" class="form-label">Bathrooms</label>
-                                <input type="number" class="form-control" id="bathroomsInput" placeholder="Number of bathrooms">
-                            </div>
-                        </div>
-                        <!-- Size -->
-                        <div class="mb-3">
-                            <label for="squareFeetInput" class="form-label">Square Meters (m²)</label>
-                            <input type="number" class="form-control" id="squareFeetInput" placeholder="Total square feet" min="0" oninput="validateInput(this)">
-                        </div>
-                        <!-- Type of property -->
-                        <div class="mb-3">
-                            <label for="typeHouseInput" class="form-label">Type of House</label>
-                            <select class="form-select" id="typeHouseInput">
-                                <option value="apartment">Apartment</option>
-                                <option value="house">House</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="cityInput" class="form-label">City</label>
-                            <input list="cities" id="cityInput" class="form-control" placeholder="Select the city...">
-                            <datalist id="cities">
-                                <!-- Example cities, add all Portuguese cities here -->
-                                <option value="Lisbon">Lisbon</option>
-                                <option value="Porto">Porto</option>
-                                <option value="Viseu">Viseu</option>
-                                <option value="Viana do Castelo">Viana do Castelo</option>
-                                <option value="Aveiro">Aveiro</option>
-                                <option value="Beja">Beja</option>
-                                <option value="Braga">Braga</option>
-                                <option value="Bragança">Bragança</option>
-                                <option value="Castelo Branco">Castelo Branco</option>
-                                <option value="Coimbra">Coimbra</option>
-                                <option value="Évora">Évora</option>
-                                <option value="Faro">Faro</option>
-                                <option value="Guarda">Guarda</option>
-                                <option value="Leiria">Leiria</option>
-                                <option value="Portalegre">Portalegre</option>
-                                <option value="Santarém">Santarém</option>
-                                <option value="Setúbal">Setúbal</option>
-                                <option value="Vila Real">Vila Real</option>
-                                <option value="Viseu">Viseu</option>
-                                <option value="Funchal">Funchal</option>
-                                <option value="Ponta Delgada">Ponta Delgada</option>
-                                <option value="Amadora">Amadora</option>
-                                <option value="Queluz">Queluz</option>
-                                <option value="Figueira da Foz">Figueira da Foz</option>
-                                <option value="Caldas da Rainha">Caldas da Rainha</option>
-                                <option value="Vila Franca de Xira">Vila Franca de Xira</option>
-                                <option value="Vila Nova de Gaia">Vila Nova de Gaia</option>
-                                <option value="Odivelas">Odivelas</option>
-                                <option value="Almada">Almada</option>
-                                <option value="Barreiro">Barreiro</option>
-                                <option value="Guimarães">Guimarães</option>
-
-                                <!-- Add more cities as needed -->
-                            </datalist>
-                        </div>
-                    
-                        <div class="mb-3">
-                            <label for="exactLocationInput" class="form-label">Exact Location (Street, number, ...)</label>
-                            <input type="text" class="form-control" id="exactLocationInput" placeholder="Enter street and number">
-                        </div>
-                        
-                        
-                        
-                        <button type="submit" class="btn btn-dark mt-4 " style="margin-left: 250px;"><a style="color:aliceblue;" href="pagina-com-casa-nova.html" onclick="showAddPropertyPopup()">Add Property</a></button>
-                        <p style="opacity: 0%;">.</p>
-                        <p style="opacity: 0%;">.</p>
-                    </form>
-                </div>
+                    <div class="mb-3">
+                        <label for="cityInput" class="form-label">City</label>
+                        <input list="cities" id="cityInput" class="form-control" placeholder="Select the city...">
+                        <datalist id="cities">
+                            <!-- Example cities, add all Portuguese cities here -->
+                            <option value="Lisbon">Lisbon</option>
+                            <option value="Porto">Porto</option>
+                            <option value="Viseu">Viseu</option>
+                            <option value="Viana do Castelo">Viana do Castelo</option>
+                            <option value="Aveiro">Aveiro</option>
+                            <option value="Beja">Beja</option>
+                            <option value="Braga">Braga</option>
+                            <option value="Bragança">Bragança</option>
+                            <option value="Castelo Branco">Castelo Branco</option>
+                            <option value="Coimbra">Coimbra</option>
+                            <option value="Évora">Évora</option>
+                            <option value="Faro">Faro</option>
+                            <option value="Guarda">Guarda</option>
+                            <option value="Leiria">Leiria</option>
+                            <option value="Portalegre">Portalegre</option>
+                            <option value="Santarém">Santarém</option>
+                            <option value="Setúbal">Setúbal</option>
+                            <option value="Vila Real">Vila Real</option>
+                            <option value="Funchal">Funchal</option>
+                            <option value="Ponta Delgada">Ponta Delgada</option>
+                            <option value="Amadora">Amadora</option>
+                            <option value="Queluz">Queluz</option>
+                            <option value="Figueira da Foz">Figueira da Foz</option>
+                            <option value="Caldas da Rainha">Caldas da Rainha</option>
+                            <option value="Vila Franca de Xira">Vila Franca de Xira</option>
+                            <option value="Vila Nova de Gaia">Vila Nova de Gaia</option>
+                            <option value="Odivelas">Odivelas</option>
+                            <option value="Almada">Almada</option>
+                            <option value="Barreiro">Barreiro</option>
+                            <option value="Guimarães">Guimarães</option>
+                        </datalist>
+                    </div>
                 
+                    <div class="mb-3">
+                        <label for="exactLocationInput" class="form-label">Exact Location (Street, number, ...)</label>
+                        <input type="text" class="form-control" id="exactLocationInput" placeholder="Enter street and number">
+                    </div>
+                    
+                    <button type="button" class="btn btn-dark mt-4" style="margin-left: 250px;" onclick="showAddPropertyPopup()">Add Property</button>
+                    
+                    <p style="opacity: 0%;">.</p>
+                    <p style="opacity: 0%;">.</p>
+                </form>
             </div>
-        </div>
-        
-        
-    </div>
-
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container py-3">
-            <div class="row g-5">
-                <div class="col-lg-4 col-md-6">
-                    <a href=""><h5 class="text-white mb-4">Communication</h5></a>
-                    <a class="btn btn-link text-white-50" href="">Chat</a>
-                    <a class="btn btn-link text-white-50" href="">Email</a>   
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <h5 class="text-white mb-4">Info. ProperT</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Glicinias, Aveiro, Portugal</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+351 963 927 234</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>properT@gmail.pt</p>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <h5 class="text-white mb-4">Quick Links</h5>
-                    <a class="btn btn-link text-white-50" href="index_admin.html">Home</a>
-                    <a class="btn btn-link text-white-50" href="add_property.html">Add a properT</a>
-                    <a class="btn btn-link text-white-50" href="clients.html">Clients</a>
-                </div>
-            </div>
+            
         </div>
     </div>
-    <!-- Footer End -->
-  
-    <!-- JavaScript Libraries and Scripts -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
-    <script src="js/main.js"></script>
-    <script src="js/add.js"></script>
+</div>
 
-    
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-3">
+        <div class="row g-5">
+            <div class="col-lg-4 col-md-6">
+                <a href=""><h5 class="text-white mb-4">Communication</h5></a>
+                <a class="btn btn-link text-white-50" href="">Chat</a>
+                <a class="btn btn-link text-white-50" href="">Email</a>   
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5 class="text-white mb-4">Info. ProperT</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Glicinias, Aveiro, Portugal</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+351 963 927 234</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>properT@gmail.pt</p>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5 class="text-white mb-4">Quick Links</h5>
+                <a class="btn btn-link text-white-50" href="index_admin.html">Home</a>
+                <a class="btn btn-link text-white-50" href="add_property.html">Add a properT</a>
+                <a class="btn btn-link text-white-50" href="clients.html">Clients</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
 
-    <script>
-        document.getElementById('propertyImages').addEventListener('change', function(event) {
-            var imageCarousel = document.getElementById('imageCarousel');
-            imageCarousel.innerHTML = ''; // Clear existing images
-        
-            Array.from(event.target.files).forEach((file, index) => {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    var activeClass = index === 0 ? ' active' : '';
-                    var itemHTML = `<div class="carousel-item${activeClass}">
-                                        <img src="${e.target.result}" class="d-block w-100" alt="Uploaded Image">
-                                    </div>`;
-                    imageCarousel.innerHTML += itemHTML;
-                };
-                reader.readAsDataURL(file);
-            });
-        });
-        </script>
+<div id="customAlert" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Property Added</h5>
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Your property has been successfully added!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="redirectToNewPage()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
+
+<!-- JavaScript Libraries and Scripts -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+<script src="js/main.js"></script>
+<script src="js/add.js"></script>
+
+<script>
+    document.getElementById('propertyImages').addEventListener('change', function(event) {
+        var previewContainer = document.getElementById('previewContainer');
+        previewContainer.innerHTML = ''; // Clear existing images
+
+        Array.from(event.target.files).forEach(function(file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var colDiv = document.createElement('div');
+                colDiv.className = 'col-md-4 mb-3';
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.className = 'img-fluid';
+                img.alt = 'Uploaded Image';
+                colDiv.appendChild(img);
+                previewContainer.appendChild(colDiv);
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+</script>
 <script>
     function showAddPropertyPopup() {
-        alert("Property added!");
+        $('#customAlert').modal('show');
     }
-    </script> 
+</script>
+<script>
+    function redirectToNewPage() {
+        window.location.href = "pagina-com-casa-nova.html";
+    }
+</script>
+
+
 </body>
 </html>
