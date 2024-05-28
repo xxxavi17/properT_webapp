@@ -24,6 +24,9 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/add.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
+    
+    <!-- A-Frame JS -->
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
     <style>
         .property-description {
             padding: 40px;
@@ -44,6 +47,25 @@
         }
         .text-danger {
             color: red;
+        }
+
+        #panorama-container {
+            position: relative;
+            width: 1440px;
+            height: 650px;
+            margin: 0 auto;
+            overflow: hidden;
+            cursor: move;
+            /* fallback if grab cursor is unsupported */
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+        }
+
+        #panorama-container:active {
+            cursor: grabbing;
+            cursor: -moz-grabbing;
+            cursor: -webkit-grabbing;
         }
     </style>
 </head>
@@ -86,191 +108,278 @@
         </div>
     </div>
 
-<div class="container mt-5">
-    <h1 class="display-5 text-center animated fadeIn mb-4"><span class="text-secondary">Property Page</span></h1>
+    <div class="container mt-5">
+        <h1 class="display-5 text-center animated fadeIn mb-4"><span class="text-secondary">Property Page</span></h1>
 
-    <div class="row align-items-center">
-        <!-- Image upload and preview section -->
-        <div class="col-md-5">
-            <div class="image-upload-container mb-3">
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner" id="imageCarousel">
-                        <div class="carousel-item active">
-                            <img src="/img/foto1.jpg" class="d-block w-100" alt="...">
+        <div class="row align-items-center">
+            <!-- Image upload and preview section -->
+            <div class="col-md-5">
+                <div class="image-upload-container mb-3">
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner" id="imageCarousel">
+                            <div class="carousel-item active">
+                                <img src="/img/foto1.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/img/foto2.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/img/foto3.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/img/foto4.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/img/foto5.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/img/foto6.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/img/foto7.jpg" class="d-block w-100" alt="...">
+                            </div>
                         </div>
-                        <div class="carousel-item">
-                            <img src="/img/foto2.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/img/foto3.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/img/foto4.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/img/foto5.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/img/foto6.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/img/foto7.jpg" class="d-block w-100" alt="...">
-                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
                 </div>
             </div>
-            
-        </div>
-        <div class="col-md-7 my-auto">
-            <div class="property-description" style="height: 100%;">
-                <h2>Apartment in Lisbon</h2>
-                <p></p>
-                <div class="property-price">
-                    <h4 class="text-primary">280.000 €</h4>
+            <div class="col-md-7 my-auto">
+                <div class="property-description" style="height: 100%;">
+                    <h2>Apartment in Lisbon</h2>
+                    <p></p>
+                    <div class="property-price">
+                        <h4 class="text-primary">280.000 €</h4>
+                    </div>
+                    <p></p>
+                    <div class="property-features">
+                        <p><i class="fas fa-bed"></i> 2 Bedrooms</p>
+                        <p><i class="fas fa-bath"></i> 2 Bathrooms</p>
+                        <p><i class="fas fa-ruler-combined"></i> 150 m²</p>
+                        <p><i class="fas fa-car"></i> Garage</p>
+                    </div>
+                    <p>The spacious, bright living room is ideal for entertaining guests, whilst the modern, fully equipped kitchen provides the perfect setting for creating gourmet meals.</p>
+                    <p>Don't miss this unique opportunity to live in one of the most desired properties in Lisbon. Get in touch today to schedule a visit!</p>
                 </div>
-                <p></p>
-                <div class="property-features">
-                    <p><i class="fas fa-bed"></i> 2 Bedrooms</p>
-                    <p><i class="fas fa-bath"></i> 2 Bathrooms</p>
-                    <p><i class="fas fa-ruler-combined"></i> 150 m²</p>
-                    <p><i class="fas fa-car"></i> Garage</p>
+            </div>
+        </div>
+        <p style="opacity: 0%;">.</p>
+        <p style="opacity: 0%;">.</p>
+        <h2 class="text-center mb-4">Try the  360º Preview of the Property</h2>
+        <div id="panorama-container"></div>
+        <p style="opacity: 0%;">.</p>
+        <p style="opacity: 0%;">.</p>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="text-center mb-4">Location</h2>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!m3!1d3112.6705081667633!2d-9.13965842408273!3d38.72537315683621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd19339ae0e2e17d%3A0x34b02fe696188199!2sR.%20Barracas%2075-53%2C%201150-035%20Lisboa!5e0!3m2!1spt-PT!2spt!4v1715458687145!5m2!1spt-PT!2spt" width="600" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
-                
-                <p>The spacious, bright living room is ideal for entertaining guests, whilst the modern, fully equipped kitchen provides the perfect setting for creating gourmet meals.</p>
-                <p>Don't miss this unique opportunity to live in one of the most desired properties in Lisbon. Get in touch today to schedule a visit!</p>
+                <div class="col-md-6">
+                    <h2 class="text-center mb-4">Interested ?</h2>
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Name:</label>
+                        <input type="text" class="form-control" id="nome" name="nome">
+                        <span id="nomeError" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contactEmail" class="form-label">E-mail:</label>
+                        <input type="email" class="form-control" id="contactEmail" name="email">
+                        <span id="emailError" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="mensagem" class="form-label">Message:</label>
+                        <textarea class="form-control" id="mensagem" name="mensagem" rows="4"></textarea>
+                        <span id="mensagemError" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="validateForm()">Send Message</button>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-6">
-            <h2 class="text-center mb-4">Location</h2>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.6705081667633!2d-9.13965842408273!3d38.72537315683621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd19339ae0e2e17d%3A0x34b02fe696188199!2sR.%20Barracas%2075-53%2C%201150-035%20Lisboa!5e0!3m2!1spt-PT!2spt!4v1715458687145!5m2!1spt-PT!2spt" width="600" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-        <div class="col-md-6">
-            <h2 class="text-center mb-4">Interested ?</h2>
-            <div class="mb-3">
-                <label for="nome" class="form-label">Name:</label>
-                <input type="text" class="form-control" id="nome" name="nome">
-                <span id="nomeError" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label for="contactEmail" class="form-label">E-mail:</label>
-                <input type="email" class="form-control" id="contactEmail" name="email">
-                <span id="emailError" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label for="mensagem" class="form-label">Message:</label>
-                <textarea class="form-control" id="mensagem" name="mensagem" rows="4"></textarea>
-                <span id="mensagemError" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary" onclick="validateForm()">Send Message</button>                
-        </div>
-    </div>
-</div>
+        <p style="opacity: 0%;">.</p>
+        <p style="opacity: 0%;">.</p>
+        
+        <p style="opacity: 0%;">.</p>
 
-<p style="opacity: 0%;">.</p>
-<p style="opacity: 0%;">.</p>
-<p style="opacity: 0%;">.</p>
-
-<!-- Footer Start -->
-<div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container py-3">
-        <div class="row g-5">
-            <div class="col-lg-4 col-md-6">
-                <a href="contact.html"><h5 class="text-white mb-4">Communication</h5></a>
-                <a class="btn btn-link text-white-50" href="contact.html">Chat</a>
-                <a class="btn btn-link text-white-50" href="contact.html">Email</a>   
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <h5 class="text-white mb-4">Info. ProperT</h5>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Glicinias, Aveiro, Portugal</p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+351 963 927 234</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>properT@gmail.pt</p>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <h5 class="text-white mb-4">Quick Links</h5>
-                <a class="btn btn-link text-white-50" href="index.html">Home</a>
-                <a class="btn btn-link text-white-50" href="index_admin.html">Staff</a>
+        <!-- Footer Start -->
+        <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-3">
+                <div class="row g-5">
+                    <div class="col-lg-4 col-md-6">
+                        <a href="contact.html"><h5 class="text-white mb-4">Communication</h5></a>
+                        <a class="btn btn-link text-white-50" href="contact.html">Chat</a>
+                        <a class="btn btn-link text-white-50" href="contact.html">Email</a>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <h5 class="text-white mb-4">Info. ProperT</h5>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Glicinias, Aveiro, Portugal</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+351 963 927 234</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>properT@gmail.pt</p>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <h5 class="text-white mb-4">Quick Links</h5>
+                        <a class="btn btn-link text-white-50" href="index.html">Home</a>
+                        <a class="btn btn-link text-white-50" href="index_admin.html">Staff</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<!-- Footer End -->
+        <!-- Footer End -->
 
-<!-- JavaScript Libraries and Scripts -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
-<script src="js/main.js"></script>
-<script src="js/add.js"></script>
-<script src="js/logout.js"></script>
-<script src="js/login.js"></script>
+        <!-- JavaScript Libraries and Scripts -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4.1.3/dist/photo-sphere-viewer.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/add.js"></script>
+        <script src="js/logout.js"></script>
+        <script src="js/login.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js"
+        integrity="sha512-EmZuy6vd0ns9wP+3l1hETKq/vNGELFRuLfazPnKKBbDpgZL0z7qyao5KgVbGJKOWlAFPNn6G9naB/8WnKN43Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+        <script>
+            function validateForm() {
+                var isValid = true;
 
-<script>
-    function validateForm() {
-        var isValid = true;
+                // Clear previous error messages
+                document.getElementById('nomeError').innerText = "";
+                document.getElementById('emailError').innerText = "";
+                document.getElementById('mensagemError').innerText = "";
 
-        // Clear previous error messages
-        document.getElementById('nomeError').innerText = "";
-        document.getElementById('emailError').innerText = "";
-        document.getElementById('mensagemError').innerText = "";
+                var nome = document.getElementById('nome').value.trim();
+                var email = document.getElementById('contactEmail').value.trim();
+                var mensagem = document.getElementById('mensagem').value.trim();
 
-        var nome = document.getElementById('nome').value.trim();
-        var email = document.getElementById('contactEmail').value.trim();
-        var mensagem = document.getElementById('mensagem').value.trim();
+                // Validate name
+                if (nome === "") {
+                    document.getElementById('nomeError').innerText = "Complete here";
+                    isValid = false;
+                }
 
-        // Validate name
-        if (nome === "") {
-            document.getElementById('nomeError').innerText = "Complete here";
-            isValid = false;
-        }
+                // Validate email
+                if (email === "") {
+                    document.getElementById('emailError').innerText = "Complete here";
+                    isValid = false;
+                }
 
-        // Validate email
-        if (email === "") {
-            document.getElementById('emailError').innerText = "Complete here";
-            isValid = false;
-        }
+                // Validate message
+                if (mensagem === "") {
+                    document.getElementById('mensagemError').innerText = "Complete here";
+                    isValid = false;
+                }
 
-        // Validate message
-        if (mensagem === "") {
-            document.getElementById('mensagemError').innerText = "Complete here";
-            isValid = false;
-        }
+                if (isValid) {
+                    showPopup();
+                }
+            }
 
-        if (isValid) {
-            showPopup();
-        }
-    }
+            function showPopup() {
+                alert("Your message has been sent!");
+                window.location.href = "index.html"; // Replace with your target page
+            }
 
-    function showPopup() {
-        alert("Your message has been sent!");
-        window.location.href = "index.html"; // Replace with your target page
-    }
+            // Add event listeners to clear error messages when typing
+            document.getElementById('nome').addEventListener('input', function() {
+                document.getElementById('nomeError').innerText = "";
+            });
 
-    // Add event listeners to clear error messages when typing
-    document.getElementById('nome').addEventListener('input', function() {
-        document.getElementById('nomeError').innerText = "";
+            document.getElementById('contactEmail').addEventListener('input', function() {
+                document.getElementById('emailError').innerText = "";
+            });
+
+            document.getElementById('mensagem').addEventListener('input', function() {
+                document.getElementById('mensagemError').innerText = "";
+            });
+
+        
+        </script>
+        <script>
+            // Define variables
+let camera, scene, renderer, controls;
+
+// Initialize the scene
+init();
+
+function init() {
+    // Create a new camera object
+    camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 1000);
+
+    // Set the camera position
+    camera.position.set(0, 0, 0.1);
+
+    // Create a new scene object
+    scene = new THREE.Scene();
+
+    // Load the panorama image
+    const loader = new THREE.TextureLoader();
+    const texture = loader.load('./img/360.jpeg');
+
+    // Set the texture wrapping and flipping options
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.repeat.x = -1;
+
+    // Create a new sphere geometry to hold the panorama image
+    const geometry = new THREE.SphereGeometry(500, 60, 40);
+
+    // Flip the geometry inside out so that the image is displayed on the inside of the sphere
+    geometry.scale(-1, 1, 1);
+
+    // Create a new material with the loaded texture
+    const material = new THREE.MeshBasicMaterial({
+        map: texture
     });
 
-    document.getElementById('contactEmail').addEventListener('input', function() {
-        document.getElementById('emailError').innerText = "";
-    });
+    // Create a new mesh with the geometry and material
+    const mesh = new THREE.Mesh(geometry, material);
 
-    document.getElementById('mensagem').addEventListener('input', function() {
-        document.getElementById('mensagemError').innerText = "";
-    });
-</script>
+    // Add the mesh to the scene
+    scene.add(mesh);
 
-</body>
+    // Create a new WebGL renderer object
+    renderer = new THREE.WebGLRenderer();
+
+    // Set the renderer size to the window size
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    // Append the renderer to the document body
+    document.getElementById("panorama-container").appendChild(renderer.domElement);
+
+    // Create a new OrbitControls object to enable mouse drag controls
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+    // Disable vertical movement of the camera
+    controls.enableZoom = false;
+    controls.enablePan = false;
+
+    // Set the controls to rotate around the panorama image
+    controls.rotateSpeed = -0.25;
+
+    // Set the render loop
+    renderer.setAnimationLoop(() => {
+        // Update the OrbitControls
+        controls.update();
+
+        // Render the scene with the camera and renderer
+        renderer.render(scene, camera);
+    });
+}
+
+// Resize the renderer when the window size changes
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
+        </script>
+    </body>
 </html>
