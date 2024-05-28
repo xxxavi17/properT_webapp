@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>properT</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/add.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+    <style>
+        .property-description {
+            padding: 40px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+        .property-description h2 {
+            color: #343a40;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .property-description p {
+            color: #6c757d;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .text-danger {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar Start -->
+<div class="container-fluid nav-bar bg-transparent">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light py-2 px-4">
+        <a href="index_admin.html" class="navbar-brand d-flex align-items-center text-center">
+            <div>
+                <img class="img-fluid" src="img/logoproper.png" style="width: 140px; height: 80px;">
+            </div>      
+        </a>
+        <span class="admin-mode ms-2" style="color: #ffffff; font-weight: bold;">Admin Mode</span>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a href="index_admin.html" class="nav-item nav-link active" style="font-weight: bold; font-size: larger;">Home</a>
+                <a href="add_property.html" class="nav-item nav-link" style="font-weight: bold;font-size: larger;">Add a Property</a>
+                <a href="clients.html" class="nav-item nav-link" style="font-weight: bold;font-size: larger;">Clients</a>
+            </div>
+            <!-- Logout Confirmation Modal with close button -->
+            <div id="logoutModal" class="logout-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
+                <div class="logout-content">
+                    <span class="close-btn" onclick="closeModal()" style="cursor: pointer; position: absolute; top: 10px; right: 10px;">&times;</span>
+                    <p>Are you sure you want to logout?</p>
+                    <button onclick="logoutUser()" class="btn btn-danger rounded-pill">Yes, logout</button>
+                    <button onclick="closeModal()" class="btn rounded-pill no-btn">No, cancel</button>
+                </div>
+            </div>
+
+            <!-- Original logout button with an event handler for opening the modal -->
+            <a href="#" class="btn btn-primary px-3 d-none d-lg-flex" id="logoutButton" style="position: absolute; right: 20px;">LOGOUT</a>
+        </div>
+    </nav>
+</div>
+<!-- Navbar End -->
+
+    <!-- Login Modal -->
+    <div id="logoutModal" class="logout-modal" style="display: none;">
+        <div class="logout-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3>Staff Login</h3>
+            <form id="loginForm">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" name="email" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p id="errorMessage" class="error-message"></p>
+        </div>
+    </div>
+
+<div class="container mt-5">
+    <h1 class="display-5 text-center animated fadeIn mb-4"><span class="text-secondary">Property Page</span></h1>
+
+    <div class="row align-items-center">
+        <!-- Image upload and preview section -->
+        <div class="col-md-5">
+            <div class="image-upload-container mb-3">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner" id="imageCarousel">
+                        <div class="carousel-item active">
+                            <img src="/img/foto1.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/img/foto2.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/img/foto3.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/img/foto4.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/img/foto5.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/img/foto6.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/img/foto7.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-md-7 my-auto">
+            <div class="property-description" style="height: 100%;">
+                <h2>Apartment in Lisbon</h2>
+                <p></p>
+                <div class="property-price">
+                    <h4 class="text-primary">280.000 €</h4>
+                </div>
+                <p></p>
+                <div class="property-features">
+                    <p><i class="fas fa-bed"></i> 2 Bedrooms</p>
+                    <p><i class="fas fa-bath"></i> 2 Bathrooms</p>
+                    <p><i class="fas fa-ruler-combined"></i> 150 m²</p>
+                    <p><i class="fas fa-car"></i> Garage</p>
+                </div>
+                
+                <p>The spacious, bright living room is ideal for entertaining guests, whilst the modern, fully equipped kitchen provides the perfect setting for creating gourmet meals.</p>
+                <p>Don't miss this unique opportunity to live in one of the most desired properties in Lisbon. Get in touch today to schedule a visit!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">Location</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.6705081667633!2d-9.13965842408273!3d38.72537315683621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd19339ae0e2e17d%3A0x34b02fe696188199!2sR.%20Barracas%2075-53%2C%201150-035%20Lisboa!5e0!3m2!1spt-PT!2spt!4v1715458687145!5m2!1spt-PT!2spt" width="600" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">Interested ?</h2>
+            <div class="mb-3">
+                <label for="nome" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="nome" name="nome">
+                <span id="nomeError" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="contactEmail" class="form-label">E-mail:</label>
+                <input type="email" class="form-control" id="contactEmail" name="email">
+                <span id="emailError" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label for="mensagem" class="form-label">Message:</label>
+                <textarea class="form-control" id="mensagem" name="mensagem" rows="4"></textarea>
+                <span id="mensagemError" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="validateForm()">Send Message</button>                
+        </div>
+    </div>
+</div>
+
+<p style="opacity: 0%;">.</p>
+<p style="opacity: 0%;">.</p>
+<p style="opacity: 0%;">.</p>
+
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-3">
+        <div class="row g-5">
+            <div class="col-lg-4 col-md-6">
+                <a href="contact.html"><h5 class="text-white mb-4">Communication</h5></a>
+                <a class="btn btn-link text-white-50" href="contact.html">Chat</a>
+                <a class="btn btn-link text-white-50" href="contact.html">Email</a>   
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5 class="text-white mb-4">Info. ProperT</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Glicinias, Aveiro, Portugal</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+351 963 927 234</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>properT@gmail.pt</p>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5 class="text-white mb-4">Quick Links</h5>
+                <a class="btn btn-link text-white-50" href="index.html">Home</a>
+                <a class="btn btn-link text-white-50" href="index_admin.html">Staff</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+<!-- JavaScript Libraries and Scripts -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+<script src="js/main.js"></script>
+<script src="js/add.js"></script>
+<script src="js/logout.js"></script>
+<script src="js/login.js"></script>
+
+<script>
+    function validateForm() {
+        var isValid = true;
+
+        // Clear previous error messages
+        document.getElementById('nomeError').innerText = "";
+        document.getElementById('emailError').innerText = "";
+        document.getElementById('mensagemError').innerText = "";
+
+        var nome = document.getElementById('nome').value.trim();
+        var email = document.getElementById('contactEmail').value.trim();
+        var mensagem = document.getElementById('mensagem').value.trim();
+
+        // Validate name
+        if (nome === "") {
+            document.getElementById('nomeError').innerText = "Complete here";
+            isValid = false;
+        }
+
+        // Validate email
+        if (email === "") {
+            document.getElementById('emailError').innerText = "Complete here";
+            isValid = false;
+        }
+
+        // Validate message
+        if (mensagem === "") {
+            document.getElementById('mensagemError').innerText = "Complete here";
+            isValid = false;
+        }
+
+        if (isValid) {
+            showPopup();
+        }
+    }
+
+    function showPopup() {
+        alert("Your message has been sent!");
+        window.location.href = "index.html"; // Replace with your target page
+    }
+
+    // Add event listeners to clear error messages when typing
+    document.getElementById('nome').addEventListener('input', function() {
+        document.getElementById('nomeError').innerText = "";
+    });
+
+    document.getElementById('contactEmail').addEventListener('input', function() {
+        document.getElementById('emailError').innerText = "";
+    });
+
+    document.getElementById('mensagem').addEventListener('input', function() {
+        document.getElementById('mensagemError').innerText = "";
+    });
+</script>
+
+</body>
+</html>

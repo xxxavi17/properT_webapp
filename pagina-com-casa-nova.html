@@ -43,20 +43,20 @@
                 <img class="img-fluid" src="img/logoproper.png" style="width: 140px; height: 80px;">
             </div>      
         </a>
-        <span class="admin-mode ms-2">Admin Mode</span>
+        <span class="admin-mode ms-2" style="color: #ffffff; font-weight: bold;">Admin Mode</span>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto">
-                <a href="index_admin.html" class="nav-item nav-link">Home</a>
-                <a href="add_property.html" class="nav-item nav-link">Add a Property</a>
-                <a href="clients.html" class="nav-item nav-link">Clients</a>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a href="index_admin.html" class="nav-item nav-link active" style="font-weight: bold; font-size: larger;">Home</a>
+                <a href="add_property.html" class="nav-item nav-link" style="font-weight: bold;font-size: larger;">Add a Property</a>
+                <a href="clients.html" class="nav-item nav-link" style="font-weight: bold;font-size: larger;">Clients</a>
             </div>
             <!-- Logout Confirmation Modal with close button -->
-            <div id="logoutModal" class="logout-modal" style="display: none;" onclick="closeModal(event)">
+            <div id="logoutModal" class="logout-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
                 <div class="logout-content">
-                    <span class="close-btn" onclick="closeModal()">&times;</span>
+                    <span class="close-btn" onclick="closeModal()" style="cursor: pointer; position: absolute; top: 10px; right: 10px;">&times;</span>
                     <p>Are you sure you want to logout?</p>
                     <button onclick="logoutUser()" class="btn btn-danger rounded-pill">Yes, logout</button>
                     <button onclick="closeModal()" class="btn rounded-pill no-btn">No, cancel</button>
@@ -64,9 +64,7 @@
             </div>
 
             <!-- Original logout button with an event handler for opening the modal -->
-
-            <a href="#" class="btn btn-primary px-3 d-none d-lg-flex" id="logoutButton">LOGOUT</a>
-
+            <a href="#" class="btn btn-primary px-3 d-none d-lg-flex" id="logoutButton" style="position: absolute; right: 20px;">LOGOUT</a>
         </div>
     </nav>
 </div>
@@ -193,7 +191,7 @@
                                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                                     <div class="property-item rounded overflow-hidden">
                                         <div class="position-relative overflow-hidden">
-                                            <a href="property.html"><img class="img-fluid" src="img/foto1.jpg" alt=""></a>
+                                            <a href="property_admin.html"><img class="img-fluid" src="img/foto1.jpg" alt=""></a>
                                             <div class="btn btn-danger rounded text-white position-absolute start-0 top-0 my-2 mx-2 py-1 px-2"><a>Remove</a></div>
                                         <div class="btn btn-dark rounded text-white position-absolute start-0 top-0   my-5 mx-2 py-1 px-4"><a>Edit</a></div>
                                             <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Apartment</div>
@@ -219,7 +217,7 @@
                                             <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">Apartment</div>
                                         </div>
                                         <div class="p-4 pb-0">
-                                            <h5 class="text-primary mb-3">300.000 €</h5>
+                                            <h5 class="text-primary mb-3">310.000 €</h5>
                                             <p><i class="fa fa-map-marker-alt text-primary me-2"></i>Rua do Vale, Lisboa, Portugal</p>
                                         </div>
                                         <div class="d-flex border-top">
