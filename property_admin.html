@@ -24,6 +24,8 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/add.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
+    <!-- A-Frame JS -->
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
     <style>
         .property-description {
             padding: 40px;
@@ -44,6 +46,25 @@
         }
         .text-danger {
             color: red;
+        }
+
+        #panorama-container {
+            position: relative;
+            width: 1440px;
+            height: 650px;
+            margin: 0 auto;
+            overflow: hidden;
+            cursor: move;
+            /* fallback if grab cursor is unsupported */
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+        }
+
+        #panorama-container:active {
+            cursor: grabbing;
+            cursor: -moz-grabbing;
+            cursor: -webkit-grabbing;
         }
     </style>
 </head>
@@ -162,35 +183,41 @@
             </div>
         </div>
     </div>
-</div>
+    <p style="opacity: 0%;">.</p>
+    <p style="opacity: 0%;">.</p>
+    <h2 class="text-center mb-4">Try the  360º Preview of the Property</h2>
+    <div id="panorama-container"></div>
+    <p style="opacity: 0%;">.</p>
+    <p style="opacity: 0%;">.</p>
 
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-6">
-            <h2 class="text-center mb-4">Location</h2>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.6705081667633!2d-9.13965842408273!3d38.72537315683621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd19339ae0e2e17d%3A0x34b02fe696188199!2sR.%20Barracas%2075-53%2C%201150-035%20Lisboa!5e0!3m2!1spt-PT!2spt!4v1715458687145!5m2!1spt-PT!2spt" width="600" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-        <div class="col-md-6">
-            <h2 class="text-center mb-4">Interested ?</h2>
-            <div class="mb-3">
-                <label for="nome" class="form-label">Name:</label>
-                <input type="text" class="form-control" id="nome" name="nome">
-                <span id="nomeError" class="text-danger"></span>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-center mb-4">Location</h2>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!m3!1d3112.6705081667633!2d-9.13965842408273!3d38.72537315683621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd19339ae0e2e17d%3A0x34b02fe696188199!2sR.%20Barracas%2075-53%2C%201150-035%20Lisboa!5e0!3m2!1spt-PT!2spt!4v1715458687145!5m2!1spt-PT!2spt" width="600" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-            <div class="mb-3">
-                <label for="contactEmail" class="form-label">E-mail:</label>
-                <input type="email" class="form-control" id="contactEmail" name="email">
-                <span id="emailError" class="text-danger"></span>
+            <div class="col-md-6">
+                <h2 class="text-center mb-4">Interested ?</h2>
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Name:</label>
+                    <input type="text" class="form-control" id="nome" name="nome">
+                    <span id="nomeError" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="contactEmail" class="form-label">E-mail:</label>
+                    <input type="email" class="form-control" id="contactEmail" name="email">
+                    <span id="emailError" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="mensagem" class="form-label">Message:</label>
+                    <textarea class="form-control" id="mensagem" name="mensagem" rows="4"></textarea>
+                    <span id="mensagemError" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="validateForm()">Send Message</button>
             </div>
-            <div class="mb-3">
-                <label for="mensagem" class="form-label">Message:</label>
-                <textarea class="form-control" id="mensagem" name="mensagem" rows="4"></textarea>
-                <span id="mensagemError" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary" onclick="validateForm()">Send Message</button>                
         </div>
     </div>
-</div>
 
 <p style="opacity: 0%;">.</p>
 <p style="opacity: 0%;">.</p>
@@ -229,6 +256,11 @@
 <script src="js/add.js"></script>
 <script src="js/logout.js"></script>
 <script src="js/login.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.6/pannellum.js"
+        integrity="sha512-EmZuy6vd0ns9wP+3l1hETKq/vNGELFRuLfazPnKKBbDpgZL0z7qyao5KgVbGJKOWlAFPNn6G9naB/8WnKN43Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
 
 <script>
     function validateForm() {
@@ -283,6 +315,140 @@
     document.getElementById('mensagem').addEventListener('input', function() {
         document.getElementById('mensagemError').innerText = "";
     });
+</script>
+<script>
+    function validateForm() {
+        var isValid = true;
+
+        // Clear previous error messages
+        document.getElementById('nomeError').innerText = "";
+        document.getElementById('emailError').innerText = "";
+        document.getElementById('mensagemError').innerText = "";
+
+        var nome = document.getElementById('nome').value.trim();
+        var email = document.getElementById('contactEmail').value.trim();
+        var mensagem = document.getElementById('mensagem').value.trim();
+
+        // Validate name
+        if (nome === "") {
+            document.getElementById('nomeError').innerText = "Complete here";
+            isValid = false;
+        }
+
+        // Validate email
+        if (email === "") {
+            document.getElementById('emailError').innerText = "Complete here";
+            isValid = false;
+        }
+
+        // Validate message
+        if (mensagem === "") {
+            document.getElementById('mensagemError').innerText = "Complete here";
+            isValid = false;
+        }
+
+        if (isValid) {
+            showPopup();
+        }
+    }
+
+    function showPopup() {
+        alert("Your message has been sent!");
+        window.location.href = "index.html"; // Replace with your target page
+    }
+
+    // Add event listeners to clear error messages when typing
+    document.getElementById('nome').addEventListener('input', function() {
+        document.getElementById('nomeError').innerText = "";
+    });
+
+    document.getElementById('contactEmail').addEventListener('input', function() {
+        document.getElementById('emailError').innerText = "";
+    });
+
+    document.getElementById('mensagem').addEventListener('input', function() {
+        document.getElementById('mensagemError').innerText = "";
+    });
+
+
+</script>
+<script>
+    // Define variables
+let camera, scene, renderer, controls;
+
+// Initialize the scene
+init();
+
+function init() {
+// Create a new camera object
+camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 1000);
+
+// Set the camera position
+camera.position.set(0, 0, 0.1);
+
+// Create a new scene object
+scene = new THREE.Scene();
+
+// Load the panorama image
+const loader = new THREE.TextureLoader();
+const texture = loader.load('./img/360.jpeg');
+
+// Set the texture wrapping and flipping options
+texture.wrapS = THREE.RepeatWrapping;
+texture.repeat.x = -1;
+
+// Create a new sphere geometry to hold the panorama image
+const geometry = new THREE.SphereGeometry(500, 60, 40);
+
+// Flip the geometry inside out so that the image is displayed on the inside of the sphere
+geometry.scale(-1, 1, 1);
+
+// Create a new material with the loaded texture
+const material = new THREE.MeshBasicMaterial({
+map: texture
+});
+
+// Create a new mesh with the geometry and material
+const mesh = new THREE.Mesh(geometry, material);
+
+// Add the mesh to the scene
+scene.add(mesh);
+
+// Create a new WebGL renderer object
+renderer = new THREE.WebGLRenderer();
+
+// Set the renderer size to the window size
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+// Append the renderer to the document body
+document.getElementById("panorama-container").appendChild(renderer.domElement);
+
+// Create a new OrbitControls object to enable mouse drag controls
+controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+// Disable vertical movement of the camera
+controls.enableZoom = false;
+controls.enablePan = false;
+
+// Set the controls to rotate around the panorama image
+controls.rotateSpeed = -0.25;
+
+// Set the render loop
+renderer.setAnimationLoop(() => {
+// Update the OrbitControls
+controls.update();
+
+// Render the scene with the camera and renderer
+renderer.render(scene, camera);
+});
+}
+
+// Resize the renderer when the window size changes
+window.addEventListener('resize', () => {
+camera.aspect = window.innerWidth / window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(window.innerWidth, window.innerHeight);
+});
 </script>
 
 </body>
